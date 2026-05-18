@@ -88,6 +88,10 @@ message LoginRequest {
   string my_platform = 13;
   bytes hwid = 14;
   string avatar = 17;
+  // Account name of the connecting peer (for same-account passwordless login)
+  string account_name = 18;
+  // JWT access token for secure same-account validation via API server
+  string access_token = 19;
 }
 
 message Terminal {

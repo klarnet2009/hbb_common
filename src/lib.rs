@@ -493,7 +493,13 @@ pub const VER_TYPE_RUSTDESK_CLIENT: &str = "rustdesk-client";
 pub const VER_TYPE_RUSTDESK_SERVER: &str = "rustdesk-server";
 
 pub fn version_check_request(typ: String) -> (VersionCheckRequest, String) {
-    const URL: &str = "https://api.rustdesk.com/version/latest";
+    let mut url = Config::get_option("api-server");
+    if url.is_empty() {
+        // Fallback to official if user didn't set custom api server, 
+        // or just return empty to disable. We'll fallback to a safe default that won't trigger update.
+        url = "https://rustdesk.iterum.lv".to_owned();
+    }
+    let url = format!("{}/api/version/latest", url);
 
     use sysinfo::System;
     let system = System::new();
@@ -510,7 +516,7 @@ pub fn version_check_request(typ: String) -> (VersionCheckRequest, String) {
             device_id,
             typ,
         },
-        URL.to_string(),
+        url,
     )
 }
 
