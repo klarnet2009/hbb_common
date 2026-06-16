@@ -2851,7 +2851,6 @@ pub fn allow_insecure_tls_fallback() -> bool {
 }
 
 pub mod keys {
-    pub const OPTION_KEEP_AWAKE_DURING_INCOMING_SESSIONS: &str = "keep_awake_during_incoming_sessions";
     pub const OPTION_VIEW_ONLY: &str = "view_only";
     pub const OPTION_SHOW_MONITORS_TOOLBAR: &str = "show_monitors_toolbar";
     pub const OPTION_COLLAPSE_TOOLBAR: &str = "collapse_toolbar";
