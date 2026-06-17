@@ -495,9 +495,8 @@ pub const VER_TYPE_RUSTDESK_SERVER: &str = "rustdesk-server";
 pub fn version_check_request(typ: String) -> (VersionCheckRequest, String) {
     let mut url = Config::get_option("api-server");
     if url.is_empty() {
-        // Fallback to official if user didn't set custom api server, 
-        // or just return empty to disable. We'll fallback to a safe default that won't trigger update.
-        url = "https://rustdesk.iterum.lv".to_owned();
+        let url = "https://api.github.com/repos/klarnet2009/rustdesk/releases/latest".to_owned();
+        return (VersionCheckRequest::default(), url);
     }
     let url = format!("{}/api/version/latest", url);
 
