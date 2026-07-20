@@ -493,7 +493,7 @@ pub const VER_TYPE_RUSTDESK_CLIENT: &str = "rustdesk-client";
 pub const VER_TYPE_RUSTDESK_SERVER: &str = "rustdesk-server";
 
 pub fn version_check_request(typ: String) -> (VersionCheckRequest, String) {
-    let mut url = Config::get_option("api-server");
+    let url = Config::get_option("api-server");
     if url.is_empty() {
         let url = "https://api.github.com/repos/klarnet2009/rustdesk/releases/latest".to_owned();
         return (VersionCheckRequest::default(), url);
